@@ -88,7 +88,7 @@ def parse_text_to_structure(text, doc_id, title):
 
     # Pattern for '제n조(...)' at the start of a line
     # 라인의 시작에서 '제n조(...)' 패턴을 찾기 위한 정규표현식
-    section_pattern = re.compile(r"^제(\d+)조\((.*?)\)")
+    section_pattern = re.compile(r"^제(\d+조(?:의\d+)?)\((.*?)\)")
 
     # Pattern for lower-level enumerators like '1.', '2.', etc.
     # '1.', '2.' 형식의 하위 열거자 정규표현식
@@ -248,7 +248,7 @@ def parse_text_to_structure(text, doc_id, title):
                 sections.append(current_section)
             
             # Create a new section
-            section_title = match_section.group(2).strip()
+            section_title =match_section.group().strip()
             current_section = {
                 "title": section_title,
                 "higher_levels": []
