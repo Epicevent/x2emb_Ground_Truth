@@ -1,0 +1,2 @@
+번역을 시작합니다: /content/sample_data/output.json
+문서 번역 중: 100%|██████████| 8/8 [43:00<00:00, 322.60s/it]번역이 완료되었습니다. 저장된 파일: /content/sample_data/translated_easynmt.json
