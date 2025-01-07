@@ -5,6 +5,7 @@ def generate_chunks(original_data):
     chunks = []
     for doc in original_data['documents']:
         document_title = doc['document_title']
+        docid= doc['document_id']
         for article in doc['main_body']:
             # 조(Level) 청크 생성
             article_number = article['article_number']  # 예: "1조"
@@ -26,8 +27,10 @@ def generate_chunks(original_data):
             else:
                 article_num = article_number  # Fallback
             
+            article_chunk_id = f"{docid}.{article_num}"
+
             chunks.append({
-                "chunk_id": article_num,
+                "chunk_id": article_chunk_id,
                 "chunk_type": "article",
                 "metadata_text": article_metadata,
                 "content": article_content
@@ -42,20 +45,22 @@ def generate_chunks(original_data):
                 # 항 메타데이터
                 # 형식: "「문서 제목」 조번호조항번호"
                 # 예: "「방위사업관리규정」 2조1항"
-                if paragraph_symbol.isdigit():
-                    paragraph_num = f"{paragraph_symbol}항"
+
+                # 유니코드 숫자 심볼 변환
+                unicode_num = ord(paragraph_symbol)
+                if 9312 <= unicode_num <= 9331:  # "①" ~ "⑫"
+                    num = unicode_num - 9311
+                    paragraph_num = f"{num}항"
                 else:
-                    # 유니코드 숫자 심볼 변환
-                    unicode_num = ord(paragraph_symbol)
-                    if 9312 <= unicode_num <= 9331:  # "①" ~ "⑫"
-                        num = unicode_num - 9311
-                        paragraph_num = f"{num}항"
-                    else:
-                        # 예상치 못한 심볼 처리 (기본값: "1항")
-                        paragraph_num = "1항"
+                    # 예상치 못한 심볼 처리 (기본값: "1항")
+                    paragraph_num = "1항"
                 
                 paragraph_metadata = f"「{document_title}」 {article_num}조{paragraph_num}"
                 
+                # 항 내용: paragraph_text_en + 모든 목의 text_en
+                items_text_en = ' '.join([item.get('item_text_en', '').strip() for item in paragraph.get('items', [])])
+                paragraph_content = paragraph_text_en + ' ' + items_text_en
+               
                 # chunk_id: 조번호.항번호 (예: "1.1")
                 # 숫자 추출: "①" -> "1"
                 paragraph_num_match = re.match(r"\d+", paragraph_symbol)
@@ -68,7 +73,7 @@ def generate_chunks(original_data):
                     if not paragraph_num.isdigit():
                         paragraph_num = '1'  # Default
                 
-                paragraph_chunk_id = f"{article_num}.{paragraph_num}"
+                paragraph_chunk_id = f"{docid}.{article_num}.{paragraph_num}"
                 
                 chunks.append({
                     "chunk_id": paragraph_chunk_id,
