@@ -1,0 +1,54 @@
+{
+    "documents": [
+        {
+            "document_id": "1",
+            "document_title": "방위사업관리규정",
+            "document_type": "방위사업청훈령",
+            "promulgation_number": "제864호",
+            "main_body": [
+                {
+                    "article_number": "1조",
+                    "article_title": "목적",
+                    "article_text": "이 규정은 「방위사업법」ㆍ「방위사업법 시행령」ㆍ「방위사업법 시행규칙」, 「국방과학기술혁신 촉진법」 ㆍ「국방과학기술혁신 촉진법 시행령」ㆍ「국방과학기술혁신 촉진법 시행규칙」에서 위임한 사항과 그 시행을 위 하여 필요한 사항 등 방위사업을 효율적으로 추진하기 위하여 필요한 절차 등을 규정함을 목적으로 한다.",
+                    "paragraphs": [],
+                    "article_title_en": "",
+                    "article_text_en": ""
+                },
+                {
+                    "article_number": "2조",
+                    "article_title": "적용범위 등",
+                    "article_text": "",
+                    "paragraphs": [
+                        {
+                            "paragraph_symbol": "①",
+                            "paragraph_text": "이 규정은 다음 각 호의 기관에 적용한다.",
+                            "items": [
+                                {
+                                    "item_symbol": "1",
+                                    "item_text": "방위사업청과 그 소속기관",
+                                    "subitems": [],
+                                    "item_text_en": ""
+                                },
+                                {
+                                    "item_symbol": "2",
+                                    "item_text": "국방과학연구소(이하 \"국과연\"이라 한다)와 그 부설기관(국방신속획득기술연구원, 이하 \"신속원\"이라 한다)",
+                                    "subitems": [],
+                                    "item_text_en": ""
+                                },
+                                {
+                                    "item_symbol": "3",
+                                    "item_text": "국방기술품질원(이하 \"기품원\"이라 한다)과 그 부설기관(국방기술진흥연구소, 이하 \"국기연\"이라 한다)",
+                                    "subitems": [],
+                                    "item_text_en": ""
+                                }
+                            ],
+                            "paragraph_text_en": ""
+                        }
+                    ],
+                    "article_title_en": ""
+                }
+            ],
+            "document_title_en": ""
+        }
+    ]
+}
